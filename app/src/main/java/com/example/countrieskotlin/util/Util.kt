@@ -2,6 +2,7 @@ package com.example.countrieskotlin.util
 
 import android.content.Context
 import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -9,7 +10,7 @@ import com.example.countrieskotlin.R
 
 //extension
 
-fun ImageView.downloadFromURL(url: String, progressDrawable: CircularProgressDrawable){
+fun ImageView.downloadFromURL(url: String?, progressDrawable: CircularProgressDrawable){
 
 
     val options = RequestOptions()
@@ -29,4 +30,9 @@ fun placeholderProgressBar(contex: Context) : CircularProgressDrawable {
         centerRadius = 40f
         start()
     }
+}
+
+@BindingAdapter("android:downloadUrl")
+fun dowloadnImage(view: ImageView, url:String?) {
+    view.downloadFromURL(url, placeholderProgressBar(view.context))
 }
